@@ -15,7 +15,8 @@ server.get("/", (req, res) => {
 });
 
 server.post("/signup", (req, res) => {
-  const { name, role, email, password } = req.body;
+  console.log("ajillaa");
+  const { name, role = "user", email, password } = req.body;
   const data = fs.readFileSync("users.json", "utf-8");
   const parsedData = JSON.parse(data);
   const id = uuidv4();
@@ -32,31 +33,31 @@ server.post("/signup", (req, res) => {
   parsedData.users.push(newUser);
   fs.writeFileSync("users.json", JSON.stringify(parsedData));
 
-  res.status(201).json({ message: "Shine hereglegchiig amjilttai burtgelee" });
+  res.status(201).json({ message: "Шинэ хэрэглэгчийг амжилттай бүртгэлээ" });
 });
 
 server.post("/signin", (req, res) => {
-  const {email, password } = req.body;
+  const { email, password } = req.body;
   const data = fs.readFileSync("users.json", "utf-8");
   const parsedData = JSON.parse(data);
   const findUser = parsedData.users.find((user) => user.email === email);
   if (!findUser) {
-    res.status(401).json({ message: "Iim hereglegch oldsongui" });
+    res.status(401).json({ message: "Ийм хэрэглэгч олдсонгүй" });
   }
   const isCheck = bcrypt.compareSync(password, findUser.password);
   if (isCheck) {
-    res.status(200).json({ message: "Amjilttai newterlee", user: findUser });
+    res.status(200).json({ message: "Амжилттай нэвтэрлээ", user: findUser });
   } else {
     res
       .status(401)
-      .json({ message: "Email eswel nuuts ug buruu baina", user: null });
+      .json({ message: "Имэйл эсвэл нууц үг буруу байна.", user: null });
   }
 });
 
 server.get("/users", (req, res) => {
   fs.readFile("users.json", "utf-8", (err, data) => {
     if (err) {
-      console.log("File unshihad aldaa garlaa");
+      console.log("Сервертэй холбогдоход алдаа гарлаа");
       return;
     }
     const parsedData = JSON.parse(data);
@@ -79,19 +80,17 @@ server.put("/users/:id", (req, res) => {
   const findIndex = parsedData.users.findIndex((el) => el.id === id);
   parsedData.users[findIndex] = { ...parsedData.users[findIndex], ...req.body };
   fs.writeFileSync("users.json", JSON.stringify(parsedData));
-  res
-    .status(201)
-    .json({ message: "Hereglegchiin ugugdul amjilttai soligdloo" });
+  res.status(201).json({ message: "Хэрэглэгчийн өгөгдөл амжилттай солигдлоо" });
 });
 
-server.delete("/users/:id", (req, res) => {
+server.delete("/users/:email", (req, res) => {
   const { id } = req.params;
   const data = fs.readFileSync("users.json", "utf-8");
   const parsedData = JSON.parse(data);
   const findIndex = parsedData.users.findIndex((el) => el.id === id);
   parsedData.users.splice(findIndex, 1);
   fs.writeFileSync("users.json", JSON.stringify(parsedData));
-  res.status(201).json({ message: `${id}tai hereglegch ustgagdlaa` });
+  res.status(201).json({ message: `Хэрэглэгчийн мэдээлэл устгагдлаа` });
 });
 
 server.listen(port, () => {

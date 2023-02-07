@@ -1,1 +1,34 @@
-{"users":[{"id":"0","name":"Naraa","role":"admin"},{"id":"1","name":"tomoo","role":"admin"},{"id":"2","name":"Daraa","role":"admin"},{"id":"5d6b1c6a-2e65-4524-9a6d-20462a3bdcbf","role":"user","email":"dulguun","password":"$2b$10$DgkZtvfMBJI2QD9StJZzZuhbxO8fwnM/pYXlgyVCeZ7lm8grjRgBS","name":"tomoo"},{"id":"95246bcb-6096-4871-a959-9107cc33a63a","name":"bat","role":"user","email":"bat@gmail.com","password":"$2b$10$xAWKBzCdsKrSY7R1gj3VXeIPX5xeiwgvvpq8jv3yqYbsJ1oWh9GQq"}]}
+{
+  "users": [
+    {
+      "id": "5d6b1c6a-2e65-4524-9a6d-20462a3bdcbf",
+      "role": "user",
+      "email": "dulguun",
+      "password": "$2b$10$DgkZtvfMBJI2QD9StJZzZuhbxO8fwnM/pYXlgyVCeZ7lm8grjRgBS",
+      "name": "tomoo",
+      "favoriteTravels": [
+        {
+          "id": "85678",
+          "title": "aylaliin ner",
+          "price": "aylaliin une",
+          "category": "aylaliin turul"
+        }
+      ]
+    },
+    {
+      "id": "95246bcb-6096-4871-a959-9107cc33a63a",
+      "name": "bat",
+      "role": "user",
+      "email": "bat@gmail.com",
+      "password": "$2b$10$xAWKBzCdsKrSY7R1gj3VXeIPX5xeiwgvvpq8jv3yqYbsJ1oWh9GQq",
+      "favoriteTravels": [
+        {
+          "id": "85678",
+          "title": "aylaliin ner",
+          "price": "aylaliin une",
+          "category": "aylaliin turul"
+        }
+      ]
+    }
+  ]
+}

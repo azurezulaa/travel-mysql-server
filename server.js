@@ -83,6 +83,16 @@ server.put("/users/:id", (req, res) => {
   res.status(201).json({ message: "Хэрэглэгчийн өгөгдөл амжилттай солигдлоо" });
 });
 
+// server.post("/users/:id", (req, res) => {
+//   const { id } = req.params;
+//   const data = fs.readFileSync("users.json", "utf-8");
+//   const parsedData = JSON.parse(data);
+//   const findIndex = parsedData.users.findIndex((el) => el.id === id);
+//   parsedData.users[findIndex] = { ...parsedData.users[findIndex], ...req.body };
+//   fs.writeFileSync("users.json", JSON.stringify(parsedData));
+//   res.status(201).json({ message: "Хэрэглэгчийн өгөгдөл амжилттай солигдлоо" });
+// });
+
 server.delete("/users/:email", (req, res) => {
   const { id } = req.params;
   const data = fs.readFileSync("users.json", "utf-8");

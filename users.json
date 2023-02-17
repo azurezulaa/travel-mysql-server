@@ -1,1 +1,62 @@
-{"users":[{"id":"5d6b1c6a-2e65-4524-9a6d-20462a3bdcbf","role":"user","email":"zulaa@gmail.com","password":"$2b$10$DgkZtvfMBJI2QD9StJZzZuhbxO8fwnM/pYXlgyVCeZ7lm8grjRgBS","name":"zulaa","favoriteTravels":[{"id":"85678","title":"aylaliin ner","price":"aylaliin une","category":"aylaliin turul"}]},{"id":"95246bcb-6096-4871-a959-9107cc33a63a","name":"bat","role":"user","email":"bat@gmail.com","password":"$2b$10$xAWKBzCdsKrSY7R1gj3VXeIPX5xeiwgvvpq8jv3yqYbsJ1oWh9GQq","favoriteTravels":[{"id":"85678","title":"aylaliin ner","price":"aylaliin une","category":"aylaliin turul"}]},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"name":"rdw","email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"email":"bat@gmail.com","password":"pass"},{"id":"eb09a57f-a3f6-4589-a3d4-edf17f233b7a","name":"zulaad","role":"user","email":"bat@gmail.com","password":"$2b$10$c81bwEi7GmickPybWD6B1u3wIS.wLJJve5/ABGtUwJhzDhF8xdiMa"},{"id":"15d9475a-e74b-447b-be6d-0f6dcd46f032","name":"sdvfddb","role":"user","email":"bat@gmail.com","password":"$2b$10$fG78O3UlrQwl4ccU4bkjTef1YNlGC7KT9aYGd.Xkf/OmiPNeNGunG"}]}
+{
+  "users": [
+    {
+      "id": "5d6b1c6a-2e65-4524-9a6d-20462a3bdcbf",
+      "role": "user",
+      "email": "zulaa@gmail.com",
+      "password": "$2b$10$DgkZtvfMBJI2QD9StJZzZuhbxO8fwnM/pYXlgyVCeZ7lm8grjRgBS",
+      "name": "zulaa",
+      "favoriteTravels": [
+        {
+          "id": "85678",
+          "title": "aylaliin ner",
+          "price": "aylaliin une",
+          "category": "aylaliin turul"
+        }
+      ]
+    },
+    {
+      "id": "95246bcb-6096-4871-a959-9107cc33a63a",
+      "name": "bat",
+      "role": "user",
+      "email": "bat@gmail.com",
+      "password": "$2b$10$xAWKBzCdsKrSY7R1gj3VXeIPX5xeiwgvvpq8jv3yqYbsJ1oWh9GQq",
+      "favoriteTravels": [
+        {
+          "id": "85678",
+          "title": "aylaliin ner",
+          "price": "aylaliin une",
+          "category": "aylaliin turul"
+        }
+      ]
+    },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "name": "rdw", "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    { "email": "bat@gmail.com", "password": "pass" },
+    {
+      "id": "eb09a57f-a3f6-4589-a3d4-edf17f233b7a",
+      "name": "zulaad",
+      "role": "user",
+      "email": "bat@gmail.com",
+      "password": "$2b$10$c81bwEi7GmickPybWD6B1u3wIS.wLJJve5/ABGtUwJhzDhF8xdiMa"
+    },
+    {
+      "id": "15d9475a-e74b-447b-be6d-0f6dcd46f032",
+      "name": "sdvfddb",
+      "role": "user",
+      "email": "bat@gmail.com",
+      "password": "$2b$10$fG78O3UlrQwl4ccU4bkjTef1YNlGC7KT9aYGd.Xkf/OmiPNeNGunG"
+    }
+  ]
+}

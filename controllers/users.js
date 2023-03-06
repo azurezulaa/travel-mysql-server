@@ -1,14 +1,23 @@
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
+const mysql = require("mysql2");
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "",
+  database: "azure_db",
+});
+
 const getAllUsers = (req, res) => {
-  fs.readFile("users.json", "utf-8", (err, data) => {
+  connection.query(`SELECT * FROM azure_user`, (err, result) => {
     if (err) {
-      console.log("Сервертэй холбогдоход алдаа гарлаа");
+      res.status(401).json({ message: err.message });
       return;
     }
-    const parsedData = JSON.parse(data);
-    res.status(201).json({ users: parsedData.users });
+    res.json({ message: "AZURE SERVER: huselt amjilttai", data: result });
   });
 };
 
@@ -40,6 +49,11 @@ const postUser = (req, res) => {
 };
 
 const deleteUser = (req, res) => {
+  const params = {
+    id: 1,
+  };
+  req.params = params;
+
   const { id } = req.params;
   const data = fs.readFileSync("users.json", "utf-8");
   const parsedData = JSON.parse(data);

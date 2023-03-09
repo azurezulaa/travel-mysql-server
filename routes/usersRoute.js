@@ -9,13 +9,9 @@ const {
 
 const userRoute = Router();
 
-userRoute.get("/", getAllUsers);
+userRoute.get("/", getAllUsers).post("/", postUser);
 
-userRoute
-  .get("/:id", getUser)
-  .post("/:id", postUser)
-  .put("/:id", putUser)
-  .delete("/:id", deleteUser);
+userRoute.get("/:id", getUser).put("/:id", putUser).delete("/:id", deleteUser);
 
 userRoute.post("/signup");
 

@@ -1,65 +1,81 @@
-const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
-
-const mysql = require("mysql2");
-
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "",
-  database: "azure_db",
-});
+const bcrypt = require("bcrypt");
+const connection = require("../config/db");
+const json2query = require("../utils/jsonToQuery");
 
 const getAllUsers = (req, res) => {
-  connection.query(`SELECT * FROM azure_user`, (err, result) => {
+  const query = `SELECT * FROM user`;
+  connection.query(query, (err, result) => {
     if (err) {
       res.status(401).json({ message: err.message });
       return;
     }
-    res.json({ message: "AZURE SERVER: huselt amjilttai", data: result });
+    res.json({ message: "Хүсэлт амжилттай", data: result });
   });
 };
 
 const getUser = (req, res) => {
   const { id } = req.params;
-  const data = fs.readFileSync("users.json", "utf-8");
-  const parsedData = JSON.parse(data);
-  const user = parsedData.users.find((el) => el.id === id);
-  res.status(200).json({ user });
+  const query = `SELECT * FROM user WHERE id=?`;
+  connection.query(query, [id], (err, result) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.status(200).json({ message: "Хүсэлт амжилттай", data: result[0] });
+  });
 };
 
 const putUser = (req, res) => {
-  const { id } = req.params;
-  const data = fs.readFileSync("users.json", "utf-8");
-  const parsedData = JSON.parse(data);
-  const findIndex = parsedData.users.findIndex((el) => el.id === id);
-  parsedData.users[findIndex] = { ...parsedData.users[findIndex], ...req.body };
-  fs.writeFileSync("users.json", JSON.stringify(parsedData));
-  res.status(201).json({ message: "Хэрэглэгчийн өгөгдөл амжилттай солигдлоо" });
+  const a = json2query(req.body);
+  const query = `UPDATE user SET ${a} WHERE id=?`;
+  connection.query(query, [req.params.id], (err, result) => {
+    if (err) {
+      res.status(401).json({ message: err.message });
+      return;
+    }
+    res.json({
+      message: "Хэрэглэгчийн мэдээлэл амжилттай шинэчлэгдлээ",
+      data: result,
+    });
+  });
 };
 
 const postUser = (req, res) => {
-  const data = fs.readFileSync("users.json", "utf-8");
-  const parsedData = JSON.parse(data);
-  const newUser = { ...req.body };
-  parsedData.users.push(newUser);
-  fs.writeFileSync("users.json", JSON.stringify(parsedData));
-  res.status(201).json({ message: "Шинэ хэрэглэгчийг амжилттай бүртгэлээ" });
+  const { name, email, password, phoneNumber } = req.body;
+  console.log(req.body.email);
+  const salted = bcrypt.genSaltSync(10);
+  const hashedPassword = bcrypt.hashSync(password, salted);
+
+  const query =
+    "INSERT INTO user (id, name,email,password, phone_number, profile_img) VALUES( null, ?, ?, ?, ?, ?)";
+  connection.query(
+    query,
+    [name, email, hashedPassword, phoneNumber, "url"],
+    (err, result) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+      res
+        .status(201)
+        .json({ message: "Шинэ хэрэглэгч амжилттай бүртгэгдлээ." });
+    }
+  );
 };
 
 const deleteUser = (req, res) => {
-  const params = {
-    id: 1,
-  };
-  req.params = params;
-
   const { id } = req.params;
-  const data = fs.readFileSync("users.json", "utf-8");
-  const parsedData = JSON.parse(data);
-  const findIndex = parsedData.users.findIndex((el) => el.id === id);
-  parsedData.users.splice(findIndex, 1);
-  fs.writeFileSync("users.json", JSON.stringify(parsedData));
-  res.status(201).json({ message: `Хэрэглэгчийн мэдээлэл устгагдлаа` });
+  const query = `DELETE FROM user WHERE id=?`;
+  connection.query(query, [id], (err, result) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.status(200).json({
+      message: "Хэрэглэгчийн мэдээлэл амжилттай устлаа",
+      data: result[0],
+    });
+  });
 };
 module.exports = { getAllUsers, getUser, putUser, postUser, deleteUser };

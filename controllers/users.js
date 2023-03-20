@@ -1,5 +1,3 @@
-const { v4: uuidv4 } = require("uuid");
-const bcrypt = require("bcrypt");
 const connection = require("../config/db");
 const json2query = require("../utils/jsonToQuery");
 
@@ -36,32 +34,9 @@ const putUser = (req, res) => {
     }
     res.json({
       message: "Хэрэглэгчийн мэдээлэл амжилттай шинэчлэгдлээ",
-      data: result,
+      data: result[0],
     });
   });
-};
-
-const postUser = (req, res) => {
-  const { name, email, password, phoneNumber } = req.body;
-  console.log(req.body.email);
-  const salted = bcrypt.genSaltSync(10);
-  const hashedPassword = bcrypt.hashSync(password, salted);
-
-  const query =
-    "INSERT INTO user (id, name,email,password, phone_number, profile_img) VALUES( null, ?, ?, ?, ?, ?)";
-  connection.query(
-    query,
-    [name, email, hashedPassword, phoneNumber, "url"],
-    (err, result) => {
-      if (err) {
-        res.status(400).json({ error: err.message });
-        return;
-      }
-      res
-        .status(201)
-        .json({ message: "Шинэ хэрэглэгч амжилттай бүртгэгдлээ." });
-    }
-  );
 };
 
 const deleteUser = (req, res) => {
@@ -78,4 +53,4 @@ const deleteUser = (req, res) => {
     });
   });
 };
-module.exports = { getAllUsers, getUser, putUser, postUser, deleteUser };
+module.exports = { getAllUsers, getUser, putUser, deleteUser };

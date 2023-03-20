@@ -3,6 +3,7 @@ const cors = require("cors");
 const mysql = require("mysql2");
 const userRoute = require("./routes/usersRoute");
 const authRoute = require("./routes/authRoute");
+const travelRoute = require("./routes/travelRoute");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -21,6 +22,7 @@ server.use(express.json());
 
 server.use("/users", userRoute);
 server.use("/auth", authRoute);
+server.use("/travel", travelRoute);
 
 // server.get("/", async (req, res) => {
 //   connection.query(`SELECT * FROM azure_user`, (err, result) => {
